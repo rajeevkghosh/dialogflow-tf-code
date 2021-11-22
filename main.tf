@@ -1,3 +1,6 @@
+provider "google" {
+  access_token = var.access_token
+}
 resource "google_dialogflow_cx_agent" "full_agent" {
   display_name               = "us-dev-abcd-fghi-dialogflowcx-agent1"
   location                   = "us-central1"
