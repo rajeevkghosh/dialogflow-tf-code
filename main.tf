@@ -1,20 +1,8 @@
-provider "google" {
- # access_token = var.access_token
- #region = "us-central1"
-}
+provider "google" {}
 
-module "project-services" {
-  source  = "terraform-google-modules/project-factory/google//modules/project_services"
-  version = "10.1.1"
-  project_id                  = "airline1-sabre-wolverine"
-
-  activate_apis = [
-    "us-central1-dialogflow.googleapis.com",
-  ]
-}
 resource "google_dialogflow_cx_agent" "full_agent" {
   display_name               = "us-dev-abcd-fghi-dialogflowcx-agent1"
-  location                   = "us-central1"
+  location                   = "global"
   project                    = "airline1-sabre-wolverine"
   default_language_code      = "en"
   supported_language_codes   = ["fr", "de", "es"]
