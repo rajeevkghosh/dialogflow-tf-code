@@ -15,6 +15,7 @@ resource "google_dialogflow_cx_agent" "full_agent" {
     enable_speech_adaptation = true
   }
   security_settings = google_data_loss_prevention_job_trigger.test_dlp.id
+  depends_on = [google_data_loss_prevention_job_trigger.test_dlp]
 }
 
 resource "google_data_loss_prevention_job_trigger" "test_dlp" {
