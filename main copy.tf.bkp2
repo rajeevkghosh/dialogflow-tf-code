@@ -14,12 +14,11 @@ resource "google_dialogflow_cx_agent" "full_agent" {
   speech_to_text_settings {
     enable_speech_adaptation = true
   }
-  security_settings = google_data_loss_prevention_job_trigger.test_dlp.id
+  security_settings = google_data_loss_prevention_job_trigger.basic.id
 }
 
-resource "google_data_loss_prevention_job_trigger" "test_dlp" {
-    parent = "airline1-sabre-wolverine"
-    description = "Description"
+resource "google_data_loss_prevention_job_trigger" "basic" {
+    parent = "projects/airline1-sabre-wolverine"
     display_name = "us-dev-abcd-fghi-dlp1"
 
     triggers {
@@ -27,15 +26,15 @@ resource "google_data_loss_prevention_job_trigger" "test_dlp" {
             recurrence_period_duration = "86400s"
         }
     }
-  
-  inspect_job {
-        inspect_template_name = "projects/airline1-sabre-wolverine/locations/global/inspectTemplates/test_inspect_template"
+
+    inspect_job {
+        inspect_template_name = "fake"
         actions {
             save_findings {
                 output_config {
                     table {
-                        project_id = "airline1-sabre-wolverine"
-                        dataset_id = "dlp_demo"
+                        project_id = "asdf"
+                        dataset_id = "asdf"
                     }
                 }
             }
@@ -43,7 +42,7 @@ resource "google_data_loss_prevention_job_trigger" "test_dlp" {
         storage_config {
             cloud_storage_options {
                 file_set {
-                    url = "gs://my_bucket_df/"
+                    url = "gs://mybucket/directory/"
                 }
             }
         }
