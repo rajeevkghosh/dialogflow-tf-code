@@ -1,8 +1,8 @@
 provider "google" {}
 
 resource "google_dialogflow_cx_agent" "full_agent" {
-  display_name               = "dev-abcd-fghi-dialogflowcx-agent1"
-  location                   = "asia-south1"
+  display_name               = "us-dev-abcd-fghi-dialogflowcx-agent1"
+  location                   = "global"
   project                    = "airline1-sabre-wolverine"
   default_language_code      = "en"
   supported_language_codes   = ["fr", "de", "es"]
@@ -14,4 +14,17 @@ resource "google_dialogflow_cx_agent" "full_agent" {
   speech_to_text_settings {
     enable_speech_adaptation = true
   }
+  security_settings = google_data_loss_prevention_job_trigger.basic.id
+}
+
+resource "google_data_loss_prevention_job_trigger" "basic" {
+    parent = "projects/airline1-sabre-wolverine"
+    display_name = "us-dev-abcd-fghi-dlp1"
+
+    triggers {
+        schedule {
+            recurrence_period_duration = "86400s"
+        }
+    }
+
 }
