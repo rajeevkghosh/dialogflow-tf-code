@@ -27,4 +27,25 @@ resource "google_data_loss_prevention_job_trigger" "basic" {
         }
     }
 
+    inspect_job {
+        inspect_template_name = "fake"
+        actions {
+            save_findings {
+                output_config {
+                    table {
+                        project_id = "asdf"
+                        dataset_id = "asdf"
+                    }
+                }
+            }
+        }
+        storage_config {
+            cloud_storage_options {
+                file_set {
+                    url = "gs://mybucket/directory/"
+                }
+            }
+        }
+    }
+
 }
