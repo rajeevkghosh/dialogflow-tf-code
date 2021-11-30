@@ -51,7 +51,6 @@ resource "google_data_loss_prevention_job_trigger" "test_dlp" {
     }
 
 }
-<<<<<<< HEAD
 
 resource "google_data_loss_prevention_inspect_template" "basic" {
     parent = "airline1-sabre-wolverine"
