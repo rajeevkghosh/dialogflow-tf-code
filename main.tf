@@ -1,4 +1,5 @@
 provider "google" {
+  credentials = file("../dialogflow.json")
 }
 
 resource "google_dialogflow_cx_agent" "full_agent" {
@@ -15,6 +16,7 @@ resource "google_dialogflow_cx_agent" "full_agent" {
   speech_to_text_settings {
     enable_speech_adaptation = true
   }
-  security_settings = "projects/airline1-sabre-wolverine/locations/global/inspectTemplates/basic-dialogflow-template1"
+  #security_settings = "projects/airline1-sabre-wolverine/locations/global/inspectTemplates/basic-dialogflow-template1"
+  security_settings = "projects/airline1-sabre-wolverine/locations/global/securitySettings/ac8dd1d1a8500fe9"
 }
 
