@@ -1,5 +1,5 @@
 provider "google" {
-  credentials = file("../dialogflow.json")
+ # credentials = file("../dialogflow.json")
 }
 
 resource "google_dialogflow_cx_agent" "full_agent" {
